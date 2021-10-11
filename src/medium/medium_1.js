@@ -66,17 +66,7 @@ export function getStatistics(array) {
     let median =  getMedian(array); 
     let mean =  sum/length;
     let variance_num = variance(array,mean);
-    let standard_deviation = Math.sqrt(variance);
-    const result = {
-        length: length,
-        sum: sum,
-        mean: mean,
-        median: median,
-        min: min,
-        max: max,
-        variance: variance_num,
-        standard_deviation: standard_deviation,
-    }
-    //const result = [length, sum, mean, median, min, max, variance_num, standard_deviation];
+    let standard_deviation = Math.sqrt(variance_num);
+    const result = {length: length, sum: sum, mean: mean, median: median, min: min, max: max, variance: variance_num, standard_deviation: standard_deviation};
     return result;
 }
