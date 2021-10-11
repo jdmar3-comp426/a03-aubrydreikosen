@@ -24,10 +24,7 @@ export function getSum(array) {
  * console.log(getMedian(array)); // 4.5
  */
 export function getMedian(array) {
-    //sort the array
     var array1 = array.sort(function(a,b) {return a-b;});
-    //even = median is the average of the 2 middle numbers
-    //odd the median is the middle number
     let length = array.length;
     let middle = Math.floor(length/2);
     if( length % 2 == 0) {
