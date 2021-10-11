@@ -57,15 +57,26 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-    var array1 = array.sort(function(a,b) {return a-b;});
-    let sum = "sum: " + getSum(array);
-    let length = "length: " + array.length;
-    let min = "min: " + array1[0];
-    let max = "max: "+ array1[array.length -1];
-    let median = "median: "+ getMedian(array);
-    let mean = "mean: " + sum/length;
-    let variance_num = "variance: " + variance(array,mean);
-    let standard_deviation = "standard_deviation: " + Math.sqrt(variance);
-    var result = [length, sum, mean, median, min, max, variance_num, standard_deviation];
+    //round numbers and take out the quotes around them?
+    const array1 = array.sort(function(a,b) {return a-b;});
+    let sum =  getSum(array);
+    let length =  array.length;
+    let min =  array1[0];
+    let max = array1[array.length -1];
+    let median =  getMedian(array); 
+    let mean =  sum/length;
+    let variance_num = variance(array,mean);
+    let standard_deviation = Math.sqrt(variance);
+    const result = {
+        length: length,
+        sum: sum,
+        mean: mean,
+        median: median,
+        min: min,
+        max: max,
+        variance: variance_num,
+        standard_deviation: standard_deviation,
+    }
+    //const result = [length, sum, mean, median, min, max, variance_num, standard_deviation];
     return result;
 }
