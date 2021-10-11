@@ -57,7 +57,7 @@ export function getMedian(array) {
  }
  */
 export function getStatistics(array) {
-    //round numbers and take out the quotes around them?
+    //change this to get rid of the spaces
     const array1 = array.sort(function(a,b) {return a-b;});
     let sum =  getSum(array);
     let length =  array.length;
