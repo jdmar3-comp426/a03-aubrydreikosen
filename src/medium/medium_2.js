@@ -22,9 +22,9 @@ see under the methods section
 export const allCarStats = {
     avgMpg: {'city': findAvg("city_mpg") , 'highway': findAvg("highway_mpg")},
     allYearStats:getStatistics(mpg_data.map(function(car) {
-        return car[year]})),
+        return car.year})),
     ratioHybrids: findRatio(mpg_data.map(function(car) {
-        return car[hybrid]})),
+        return car.hybrid})),
 };
 
 //helper function for avgMpg
