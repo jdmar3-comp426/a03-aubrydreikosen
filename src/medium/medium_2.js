@@ -36,6 +36,7 @@ export function findAvg(mpg_array) {
 }
 
 //helper functions for ratioHybrids
+//ratio hybrids is off by a bit
 export function findRatio(array) {
     //array with all boolean values passed in find the ratio of true to false
     let hybrid = 0;
@@ -43,7 +44,8 @@ export function findRatio(array) {
     for(let i = 0; i < array.length; i++) {
         if(array[i]) {
             hybrid++;
-        } else {
+        } 
+        if(!array[i]) {
             nonHybrid++;
         }
     }
