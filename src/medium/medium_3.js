@@ -26,6 +26,7 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
     }
     //sort the array by horsepower in desceding order 
     var array1 = array.sort((a, b) => (a.horsepower > b.horsepower) ? 1 : -1)
+    return array1;
 }
 
 
@@ -49,6 +50,7 @@ export function searchMpg(car_data, minCity, minHighway) {
     }
     //sort the array by horsepower in desceding order 
     var array1 = array.sort((a, b) => (a.highway_mpg > b.highway_mpg) ? 1 : -1)
+    return array1;
 }
 
 
