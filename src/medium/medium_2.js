@@ -135,8 +135,8 @@ export function findSubAvg() {
     while( year < 2013) {
         //get subarray of all 'year' cars
         const thisYear = mpg_data.filter(mpg_data => mpg_data.year == year);
-        const thisYearHybrid = thisYear.filter(thisYear => thisYear.hybrid == True);
-        const thisYearNonHybrid = thisYear.filter(thisYear => thisYear.hybrid == False);
+        const thisYearHybrid = thisYear.filter(thisYear => thisYear.hybrid == true);
+        const thisYearNonHybrid = thisYear.filter(thisYear => thisYear.hybrid == false);
         let hybridCity =  findAvg(thisYearHybrid.map(function(car) {
             return car.city_mpg
         }))
