@@ -152,17 +152,20 @@ export function findSubAvg() {
         const hybridAvg = {city: hybridCity, highway: hybridHighway};
         const nonHybridAvg = {city: nonHybridCity, highway: nonHybridCity};
         if ( year == 2010) {
-           year1 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+           year1.hybrid = hybridAvg;
+           year1.notHybrid = nonHybridAvg;
         }
         if( year == 2011) {
-            year2 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+            year2.hybrid = hybridAvg;
+            year2.notHybrid = nonHybridAvg;
         }
         if( year == 2012){
-            year3 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+            year3.hybrid = hybridAvg;
+            year3.notHybrid = nonHybridAvg;
         }
         year ++;
 
     }
     const result = {2010: year1, 2011: year2, 2012: year3};
-    return result
+    return result;
 }
