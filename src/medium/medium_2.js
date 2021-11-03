@@ -19,6 +19,7 @@ see under the methods section
  *
  * @param {allCarStats.ratioHybrids} ratio of cars that are hybrids
  */
+
 export const allCarStats = {
     avgMpg: {'city': findAvg(mpg_data.map(function(car) {
         return car.city_mpg})), 'highway': findAvg(mpg_data.map(function(car) {
@@ -37,19 +38,17 @@ export function findAvg(mpg_array) {
 
 //helper functions for ratioHybrids
 //ratio hybrids is off by a bit
-export function findRatio(array) {
-    //array with all boolean values passed in find the ratio of true to false
+export function findRatio(hybridList) {
     let hybrid = 0;
     let nonHybrid = 0;
-    for(let i = 0; i < array.length; i++) {
+    for(let i = 0; i < hybridList.length; i++) {
         if(array[i]) {
             hybrid++;
-        } 
-        if(!array[i]) {
+        } else {
             nonHybrid++;
         }
     }
-    return hybrid/nonHybrid;
+    return hybrid/hybridList.length;
 }
 
 
