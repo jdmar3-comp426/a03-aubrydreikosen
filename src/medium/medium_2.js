@@ -38,17 +38,18 @@ export function findAvg(mpg_array) {
 
 //helper functions for ratioHybrids
 //ratio hybrids is off by a bit
-export function findRatio(hybridList) {
+export function findRatio(array) {
+    let length = array.length;
     let hybrid = 0;
     let nonHybrid = 0;
-    for(let i = 0; i < hybridList.length; i++) {
+    for(let i = 0; i < length; i++) {
         if(array[i]) {
             hybrid++;
         } else {
             nonHybrid++;
         }
     }
-    return hybrid/hybridList.length;
+    return hybrid/length;
 }
 
 
