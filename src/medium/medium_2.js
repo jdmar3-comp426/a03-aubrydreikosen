@@ -21,19 +21,26 @@ see under the methods section
  */
 
 export const allCarStats = {
-    avgMpg: {'city': findAvg(mpg_data.map(function(car) {
-        return car.city_mpg})), 'highway': findAvg(mpg_data.map(function(car) {
-            return car.highway_mpg}))},
-    allYearStats:getStatistics(mpg_data.map(function(car) {
-        return car.year})),
+    avgMpg: {
+        'city': findAvg(mpg_data.map(function(car) {
+            return car.city_mpg
+        })),
+        'highway': findAvg(mpg_data.map(function(car) {
+            return car.highway_mpg
+        }))
+    },
+    allYearStats: getStatistics(mpg_data.map(function(car) {
+        return car.year
+    })),
     ratioHybrids: findRatio(mpg_data.map(function(car) {
-        return car.hybrid})),
+        return car.hybrid
+    })),
 };
 
 //helper function for avgMpg
 export function findAvg(mpg_array) {
     const summing = (previous, current) => previous + current;
-    return (mpg_array.reduce(summing))/(mpg_array.length);
+    return (mpg_array.reduce(summing)) / (mpg_array.length);
 }
 
 //helper functions for ratioHybrids
@@ -42,14 +49,14 @@ export function findRatio(array) {
     let length = array.length;
     let hybrid = 0;
     let nonHybrid = 0;
-    for(let i = 0; i < length; i++) {
-        if(array[i]) {
+    for (let i = 0; i < length; i++) {
+        if (array[i]) {
             hybrid++;
         } else {
             nonHybrid++;
         }
     }
-    return hybrid/length;
+    return hybrid / length;
 }
 
 
@@ -115,6 +122,47 @@ export function findRatio(array) {
  * }
  */
 export const moreStats = {
-    makerHybrids: undefined,
+    makerHybrids: findSubAvg(),
     avgMpgByYearAndHybrid: undefined
 };
+
+export function findSubAvg() {
+    // first want to get array with all of the years - only 2010, 2011, and 2012 is in the dataset
+    let year = 2010;
+    const year1 = new Object();
+    const year2 = new Object();
+    const year3 = new Object();
+    while( year < 2013) {
+        //get subarray of all 'year' cars
+        const thisYear = mpg_data.filter(mpg_data => mpg_data.year == year);
+        const thisYearHybrid = thisYear.filter(thisYear => thisYear.hybrid == True);
+        const thisYearNonHybrid = thisYear.filter(thisYear => thisYear.hybrid == False);
+        let hybridCity =  findAvg(thisYearHybrid.map(function(car) {
+            return car.city_mpg
+        }))
+        let hybridHighway =  findAvg(thisYearHybrid.map(function(car) {
+            return car.highway_mpg
+        }))
+        let nonHybridCity = findAvg(thisYearNonHybrid.map(function(car) {
+            return car.city_mpg
+        }))
+        let nonHybridHighway = findAvg(thisYearNonHybrid.map(function(car) {
+            return car.highway_mpg
+        }))
+        const hybridAvg = {city: hybridCity, highway: hybridHighway};
+        const nonHybridAvg = {city: nonHybridCity, highway: nonHybridCity};
+        if ( year == 2010) {
+           year1 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+        }
+        if( year == 2011) {
+            year2 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+        }
+        if( year == 2012){
+            year3 = { hybrid: hybridAvg, notHybrid: nonHybridAvg};
+        }
+        year ++;
+
+    }
+    const result = {2010: year1, 2011: year2, 2012: year3};
+    return result
+}
