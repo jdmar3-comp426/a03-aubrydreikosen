@@ -77,7 +77,11 @@ export function findRatio(array) {
  *     ]
  *}]
  *
- *
+ *          1. for each make of car-search in mpg_data for that make and check to see if it is a hybrid
+ *              1a. if it is a hybrid add id to array
+ *              1b. if not dont add it to the array
+ *          2. check to see if there are 0 hybrids if so break out of loop and just don't add this one to array
+ *          3. sort by each elements.hybrids.length 
  *
  *
  * @param {moreStats.avgMpgByYearAndHybrid} Object where keys are years and each year
