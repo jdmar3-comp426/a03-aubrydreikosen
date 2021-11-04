@@ -17,8 +17,8 @@
 export const repeat = (fn, n, ...params) => {
     var results = [];
     for(let i = 0; i < n; i++) {
-        let currentResult = fn(params);
-        results.push(currentResult);
+        let currentResult = fn(...params);
+        results[results.length] = currentResult;
     }
     return results;
 };
@@ -30,7 +30,7 @@ export const repeat = (fn, n, ...params) => {
  */
 //idk if console.log should be on the outside or inside
 export const repeatDemo = () => {
-    (console.log(), 10, "Hello, world!");
+    // console.log(repeat(<someFunction>, 10, "Hello, World!"))
 };
 
 
@@ -63,7 +63,7 @@ export const tenTimes = multiplyBy(10);
  *   function to multiply 50 by 10 and returns the result.
  */
 export const tenTimesFifty = () => {
-    multiplyBy(50)(tenTimes);
+    multiplyBy(50)(10);
 
 };
 
