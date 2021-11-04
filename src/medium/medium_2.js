@@ -48,12 +48,9 @@ export function findAvg(mpg_array) {
 export function findRatio(array) {
     let length = array.length;
     let hybrid = 0;
-    let nonHybrid = 0;
     for (let i = 0; i < length; i++) {
         if (array[i]) {
             hybrid++;
-        } else {
-            nonHybrid++;
         }
     }
     return hybrid / length;
@@ -122,18 +119,54 @@ export function findRatio(array) {
  * }
  */
 export const moreStats = {
-    makerHybrids: findSubAvg(),
-    avgMpgByYearAndHybrid: undefined
+    makerHybrids: findMakerHybrids(mpg_data.map(function(car) {
+        return car.city_mpg
+    }).filter(function(value, index, self) {
+        return self.indexOf(value) === index;
+      }),mpg_data.filter(mpg_data => mpg_data.hybrid == true)),
+    avgMpgByYearAndHybrid: findSubAvg(),
 };
 
+
+
+//makerHybrids helper function 
+// param: array of unique makes of cars, array of all car objects that are hybrids
+    //1. using loop go through each make 
+        // for each make 
+            // find all cars in mpg_data that are that make 
+            // add that car to an object titled that make of car
+        // if array is empty then go continue into next interation of loop otherwise-
+             // add the make object into result object 
+    // sort result object by length of array associated with each key
+    //return result
+export function findMakerHybrids(uniqueCarModels, allHybridCars){
+    const result = new Object();
+    for (let i = 0; i < uniqueCarModels.length; i++) {
+        let make = uniqueCarModels[i];
+        const makeHybrids = allHybridCars.filter(allHybridCars => allHybridCars.make == make);
+        if(makeHybrids.length == 0){
+            continue;
+        } else {
+            result[make] = makeHybrids;
+        }
+    }
+    
+
+}
+
+
+
+
+//avgMpgByYearAndHybrid code - this can for sure be made simpler work on that (that is if it even works)
 export function findSubAvg() {
-    // first want to get array with all of the years - only 2010, 2011, and 2012 is in the dataset
     let year = 2010;
+    const result = new Object();
+    /*
     const year1 = new Object();
     const year2 = new Object();
     const year3 = new Object();
+    */
     while( year < 2013) {
-        //get subarray of all 'year' cars
         const thisYear = mpg_data.filter(mpg_data => mpg_data.year == year);
         const thisYearHybrid = thisYear.filter(thisYear => thisYear.hybrid == true);
         const thisYearNonHybrid = thisYear.filter(thisYear => thisYear.hybrid == false);
@@ -150,7 +183,10 @@ export function findSubAvg() {
             return car.highway_mpg
         }))
         const hybridAvg = {city: hybridCity, highway: hybridHighway};
-        const nonHybridAvg = {city: nonHybridCity, highway: nonHybridCity};
+        const nonHybridAvg = {city: nonHybridCity, highway: nonHybridHighway};
+        result[year].hybrid = hybridAvg;
+        result[year].notHybrid = nonHybridAvg;
+        /*
         if ( year == 2010) {
            year1.hybrid = hybridAvg;
            year1.notHybrid = nonHybridAvg;
@@ -163,9 +199,9 @@ export function findSubAvg() {
             year3.hybrid = hybridAvg;
             year3.notHybrid = nonHybridAvg;
         }
+        */
         year ++;
-
     }
-    const result = {2010: year1, 2011: year2, 2012: year3};
+    //const result = {2010: year1, 2011: year2, 2012: year3};
     return result;
 }
