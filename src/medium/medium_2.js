@@ -81,11 +81,7 @@ export function findRatio(array) {
  *     ]
  *}]
  *
- *          1. for each make of car-search in mpg_data for that make and check to see if it is a hybrid
- *              1a. if it is a hybrid add id to array
- *              1b. if not dont add it to the array
- *          2. check to see if there are 0 hybrids if so break out of loop and just don't add this one to array
- *          3. sort by each elements.hybrids.length 
+ *      
  *
  *
  * @param {moreStats.avgMpgByYearAndHybrid} Object where keys are years and each year
@@ -131,14 +127,6 @@ export const moreStats = {
 
 //makerHybrids helper function 
 // param: array of unique makes of cars, array of all car objects that are hybrids
-    //1. using loop go through each make 
-        // for each make 
-            // find all cars in mpg_data that are that make 
-            // add that car to an object titled that make of car
-        // if array is empty then go continue into next interation of loop otherwise-
-             // add the make object into result object 
-    // sort result object by length of array associated with each key
-    //return result
 export function findMakerHybrids(uniqueCarModels, allHybridCars){
     const result = new Object();
     for (let i = 0; i < uniqueCarModels.length; i++) {
@@ -157,15 +145,10 @@ export function findMakerHybrids(uniqueCarModels, allHybridCars){
 
 
 
-//avgMpgByYearAndHybrid code - this can for sure be made simpler work on that (that is if it even works)
+//avgMpgByYearAndHybrid code
 export function findSubAvg() {
     let year = 2009;
     const result = new Object();
-    /*
-    const year1 = new Object();
-    const year2 = new Object();
-    const year3 = new Object();
-    */
     while( year < 2013) {
         const thisYear = mpg_data.filter(mpg_data => mpg_data.year == year);
         const thisYearHybrid = thisYear.filter(thisYear => thisYear.hybrid == true);
@@ -185,22 +168,7 @@ export function findSubAvg() {
         const hybridAvg = {city: hybridCity, highway: hybridHighway};
         const nonHybridAvg = {city: nonHybridCity, highway: nonHybridHighway};
         result[year] = {hybrid: hybridAvg, notHybrid: nonHybridAvg};
-        /*
-        if ( year == 2010) {
-           year1.hybrid = hybridAvg;
-           year1.notHybrid = nonHybridAvg;
-        }
-        if( year == 2011) {
-            year2.hybrid = hybridAvg;
-            year2.notHybrid = nonHybridAvg;
-        }
-        if( year == 2012){
-            year3.hybrid = hybridAvg;
-            year3.notHybrid = nonHybridAvg;
-        }
-        */
         year ++;
     }
-    //const result = {2010: year1, 2011: year2, 2012: year3};
     return result;
 }
