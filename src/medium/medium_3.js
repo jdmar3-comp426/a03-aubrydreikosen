@@ -36,7 +36,7 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  *
  */
 export function searchMpg(car_data, minCity, minHighway) {
-    const allPossibleCars = car_data.filter(car_data => car_data.highway_mph >= minHighway && 
+    const allPossibleCars = car_data.filter(car_data => car_data.highway_mpg >= minHighway && 
         car_data.city_mpg >= minCity);
     const sorted = allPossibleCars.sort((a, b) => (a.highway_mpg > b.highway_mpg) ? -1 : 1)
     return sorted;
@@ -51,6 +51,8 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @param searchTerm A string to that is used for searching
  * @returns {[]} array of cars
  */
+
+//tolowerCase is not a thing
 export function searchName(car_data, searchTerm) {
     const foundSearchTerm = car_data.filter(function(current) {
         return current.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1})
@@ -68,7 +70,6 @@ export function searchName(car_data, searchTerm) {
  * @returns {[]} an array of car objects
  */
 
-//i dont think this is right it is returning an empty array 
 export function searchByYear(car_data, years) {
     let result = [];
     for( let i = 0; i < years.length; i++) {
@@ -76,7 +77,7 @@ export function searchByYear(car_data, years) {
         const allCarsCurrentYear = car_data.filter(car_data => car_data.year == currentYear);
         result = result.concat(allCarsCurrentYear);
     }
-    //sort the array
-    return result;
+    const sorted = result.sort((a, b) => (a.year > b.year) ? -1 : 1)
+    return sorted;
 
 }

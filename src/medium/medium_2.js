@@ -128,18 +128,20 @@ export const moreStats = {
 //makerHybrids helper function 
 // param: array of unique makes of cars, array of all car objects that are hybrids
 export function findMakerHybrids(uniqueCarModels, allHybridCars){
-    const result = new Object();
+    const result = [];
     for (let i = 0; i < uniqueCarModels.length; i++) {
         let make = uniqueCarModels[i];
         const makeHybrids = allHybridCars.filter(allHybridCars => allHybridCars.make == make);
         if(makeHybrids.length == 0){
             continue;
         } else {
-            result[make] = makeHybrids;
+            var thisMakeAndList = {make: make, hybrids: makeHybrids};
+            result.push(thisMakeAndList);
         }
     }
     //need to sort still
-    return result;
+    const sorted = result.sort((a, b) => (a.hybrids.length > b.hybrids.length) ? -1 : 1)
+    return sorted;
 }
 
 
