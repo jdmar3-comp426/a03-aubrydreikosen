@@ -20,7 +20,7 @@ queries.
 export function searchHighPower(car_data, minHorsepower, minTorque) {
     const allPossibleCars = car_data.filter(car_data => car_data.horsepower >= minHorsepower && 
         car_data.torque >= minTorque);
-    const sorted = allPossibleCars.sort((a, b) => (a.horsepower > b.horsepower) ? 1 : -1)
+    const sorted = allPossibleCars.sort((a, b) => (a.horsepower > b.horsepower) ? -1 : 1)
     return sorted;
 }
 
@@ -38,7 +38,7 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
 export function searchMpg(car_data, minCity, minHighway) {
     const allPossibleCars = car_data.filter(car_data => car_data.highway_mph >= minHighway && 
         car_data.city_mpg >= minCity);
-    const sorted = allPossibleCars.sort((a, b) => (a.highway_mpg > b.highway_mpg) ? 1 : -1)
+    const sorted = allPossibleCars.sort((a, b) => (a.highway_mpg > b.highway_mpg) ? -1 : 1)
     return sorted;
 }
 
@@ -67,6 +67,8 @@ export function searchName(car_data, searchTerm) {
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]
  * @returns {[]} an array of car objects
  */
+
+//i dont think this is right it is returning an empty array 
 export function searchByYear(car_data, years) {
     let result = [];
     for( let i = 0; i < years.length; i++) {
