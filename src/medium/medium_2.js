@@ -159,7 +159,7 @@ export function findMakerHybrids(uniqueCarModels, allHybridCars){
 
 //avgMpgByYearAndHybrid code - this can for sure be made simpler work on that (that is if it even works)
 export function findSubAvg() {
-    let year = 2010;
+    let year = 2009;
     const result = new Object();
     /*
     const year1 = new Object();
