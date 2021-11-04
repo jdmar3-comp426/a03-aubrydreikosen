@@ -184,8 +184,7 @@ export function findSubAvg() {
         }))
         const hybridAvg = {city: hybridCity, highway: hybridHighway};
         const nonHybridAvg = {city: nonHybridCity, highway: nonHybridHighway};
-        result[year].hybrid = hybridAvg;
-        result[year].notHybrid = nonHybridAvg;
+        result[year] = {hybrid: hybridAvg, notHybrid: nonHybridAvg};
         /*
         if ( year == 2010) {
            year1.hybrid = hybridAvg;
