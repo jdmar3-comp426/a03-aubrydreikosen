@@ -150,8 +150,8 @@ export function findMakerHybrids(uniqueCarModels, allHybridCars){
             result[make] = makeHybrids;
         }
     }
-    
-
+    //need to sort still
+    return result;
 }
 
 
