@@ -30,7 +30,7 @@ export const repeat = (fn, n, ...params) => {
  */
 //idk if console.log should be on the outside or inside
 export const repeatDemo = () => {
-    (repeat(console.log, 10, "Hello, World!"))
+    (repeat(console.log, 10, "Hello, world!"))
 }
 
 
@@ -93,7 +93,10 @@ export const tenTimesFifty = () => {
  *    everyEven([1, 1, 0, 1, 1], x => x === 1)  <--  returns false
  */
 export const everyEven = (arr, test) => {
-
+    for(let i = 0; i < arr.length; i+2) {
+        if(!test(arr[i])){return false;}
+    }
+    return true;
 };
 
 
@@ -117,6 +120,9 @@ export const everyEven = (arr, test) => {
  *    someEven([0, 0, 0, 0, 0], x => x === 0)  <--  returns true
  */
 export const someEven = (arr, test) => {
+    for(const i in arr) {
+
+    }
 
 };
 
@@ -143,7 +149,10 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-
+    for(let i = 0; i < arr.length; i+2) {
+        if(!test(arr[i])){return true;}
+    }
+    return false;
 };
 
 
@@ -153,7 +162,8 @@ export const filter = (arr, test) => {
  *   odd numbers. Use the "everyEven" function in this function.
  */
 export const allEvensAreOdd = (arr) => {
-
+    const oddFinder = (element) => {if(element%2 == 1) { return true;}}
+    return everyEven(arr, oddFinder);
 };
 
 
@@ -163,7 +173,8 @@ export const allEvensAreOdd = (arr) => {
  *   array is an odd number. Use the "someEven" function in this function.
  */
 export const anEvenIsOdd = (arr) => {
-
+    const oddFinder = (element) => {if(element%2 == 1) { return true;}}
+    return someEven(arr, oddFinder);
 };
 
 
@@ -174,5 +185,6 @@ export const anEvenIsOdd = (arr) => {
  *   pass the test. You must use the filter function.
  */
 export const hasExactly = (arr, test, n) => {
-
+    var testApplied = arr.filter(test);
+    return (testApplied.length == n);
 };
