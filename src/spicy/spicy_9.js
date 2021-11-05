@@ -30,8 +30,8 @@ export const repeat = (fn, n, ...params) => {
  */
 //idk if console.log should be on the outside or inside
 export const repeatDemo = () => {
-    // console.log(repeat(<someFunction>, 10, "Hello, World!"))
-};
+    (repeat(console.log, 10, "Hello, World!"))
+}
 
 
 /**************************************************************************
@@ -63,7 +63,9 @@ export const tenTimes = multiplyBy(10);
  *   function to multiply 50 by 10 and returns the result.
  */
 export const tenTimesFifty = () => {
-    return temTime(multiplyBy(50))
+    const pt1 = tenTimes;
+    const pt2 = pt1(50);
+    return pt2;
 };
 
 
