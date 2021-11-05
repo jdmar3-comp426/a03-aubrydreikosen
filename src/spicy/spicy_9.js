@@ -63,8 +63,7 @@ export const tenTimes = multiplyBy(10);
  *   function to multiply 50 by 10 and returns the result.
  */
 export const tenTimesFifty = () => {
-    multiplyBy(50)(10);
-
+    return temTime(multiplyBy(50))
 };
 
 
