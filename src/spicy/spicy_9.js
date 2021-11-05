@@ -121,7 +121,7 @@ export const everyEven = (arr, test) => {
  */
 export const someEven = (arr, test) => {
     for(let i = 0; i < arr.length; i+=2) {
-        if(!test(arr[i])){return true;}
+        if(test(arr[i])){return true;}
     }
     return false;
 };
@@ -149,7 +149,10 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-
+    var fail = arr.filter(!test);
+    var pass = arr.filter(test);
+    const result = {fail: fail, pass: pass};
+    return result;
 };
 
 
