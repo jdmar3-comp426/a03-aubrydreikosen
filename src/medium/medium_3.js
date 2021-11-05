@@ -54,10 +54,7 @@ export function searchMpg(car_data, minCity, minHighway) {
 
 //tolowerCase is not a thing
 export function searchName(car_data, searchTerm) {
-    const filterHelper = (array, word) => {
-        return array.filter(a => a.id.toLowerCase().indexOf(word.toLowerCase()) !== -1)
-    }
-    const foundCars = filterHelper(car_data, searchTerm)
+    const foundCars = car_data.filter(car => car.id.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
     //still need to sort
     return foundCars;
 }
