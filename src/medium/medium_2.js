@@ -139,7 +139,6 @@ export function findMakerHybrids(uniqueCarModels, allHybridCars){
             result.push(thisMakeAndList);
         }
     }
-    //need to sort still
     const sorted = result.sort((a, b) => (a.hybrids.length > b.hybrids.length) ? -1 : 1)
     return sorted;
 }

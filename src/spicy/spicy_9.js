@@ -149,9 +149,10 @@ export const someEven = (arr, test) => {
  *       -->  { pass: [1, 5, 31], fail: [90] }
  */
 export const filter = (arr, test) => {
-    var fail = arr.filter(!test);
+    const falseFinder = (test) => {if(!test) { return true;}}
+    var fail = arr.filter(falseFinder);
     var pass = arr.filter(test);
-    const result = {fail: fail, pass: pass};
+    const result = {pass: pass, fail: fail};
     return result;
 };
 
