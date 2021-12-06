@@ -18,7 +18,10 @@ queries.
  *
  */
 export function searchHighPower(car_data, minHorsepower, minTorque) {
-
+    const allPossibleCars = car_data.filter(car_data => car_data.horsepower >= minHorsepower && 
+        car_data.torque >= minTorque);
+    const sorted = allPossibleCars.sort((a, b) => (a.horsepower > b.horsepower) ? -1 : 1)
+    return sorted;
 }
 
 
@@ -33,7 +36,10 @@ export function searchHighPower(car_data, minHorsepower, minTorque) {
  *
  */
 export function searchMpg(car_data, minCity, minHighway) {
-
+    const allPossibleCars = car_data.filter(car_data => car_data.highway_mpg >= minHighway && 
+        car_data.city_mpg >= minCity);
+    const sorted = allPossibleCars.sort((a, b) => (a.highway_mpg > b.highway_mpg) ? -1 : 1)
+    return sorted;
 }
 
 
@@ -45,8 +51,12 @@ export function searchMpg(car_data, minCity, minHighway) {
  * @param searchTerm A string to that is used for searching
  * @returns {[]} array of cars
  */
-export function searchName(car_data, searchTerm) {
 
+//tolowerCase is not a thing
+export function searchName(car_data, searchTerm) {
+    const foundCars = car_data.filter(car => car.id.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1)
+    //still need to sort
+    return foundCars;
 }
 
 
@@ -58,6 +68,15 @@ export function searchName(car_data, searchTerm) {
  * @param {number[]} years - array of years to be included in the results e.g. [2010, 2012]
  * @returns {[]} an array of car objects
  */
+
 export function searchByYear(car_data, years) {
+    let result = [];
+    for( let i = 0; i < years.length; i++) {
+        let currentYear = years[i];
+        const allCarsCurrentYear = car_data.filter(car_data => car_data.year == currentYear);
+        result = result.concat(allCarsCurrentYear);
+    }
+    const sorted = result.sort((a, b) => (a.year > b.year) ? -1 : 1)
+    return sorted;
 
 }
